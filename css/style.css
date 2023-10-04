@@ -1,0 +1,167 @@
+:root {
+  --primary-color: #425b84;
+  --secondary-color: #5b7bb4;
+  --max-width: 500px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5rem;
+  background: var(--primary-color);
+  color: #fff;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+#main-header {
+  background: var(--secondary-color);
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  text-align: center; 
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+#timeline ul {
+  padding: 50px 0;
+}
+
+/* line  */
+#timeline ul li {
+  background: #fff;
+  width: 6px;
+  margin: 0 auto;
+  list-style: none;
+  padding-top: 50px;
+  position: relative;
+}
+
+/* Boxes */
+#timeline ul li div {
+  width: 400px;
+  background: var(--secondary-color);
+  padding: 1rem;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+/* Right Side  */
+#timeline ul li:nth-child(odd) div {
+  left: 40px;
+  transform: translate(200px, 0)
+}
+
+/* Left Side  */
+#timeline ul li:nth-child(even) div {
+  right: 435px;
+  transform: translate(-200px, 0)
+}
+
+/* Bullet point */
+#timeline ul li:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 20px;
+  height: 20px;
+  /* background: var(--secondary-color); */
+  background: inherit;
+  transform: translateX(-40%);
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Set Arrow  */
+#timeline div::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  /* font-size: 0; */
+}
+
+/* Left Arrow  */
+#timeline ul li:nth-child(odd) div::after {
+  left: -24px;
+  border-width: 8px 16px 8px 8px;
+  /* border-color: red green yellow black; */
+  border-color: transparent var(--secondary-color) transparent transparent;
+  
+}
+
+/* Right Arrow  */
+#timeline ul li:nth-child(even) div::after {
+  right: -32px;
+  border-width: 8px 16px;
+  /* border-color: red green yellow black; */
+  border-color: transparent transparent transparent var(--secondary-color);
+}
+
+@media(max-width: 900px) {
+  #timeline ul li div {
+    width: 250px;
+  }
+
+  #timeline ul li:nth-child(even) div {
+    right: 287px;
+  }
+}
+
+@media(max-width: 600px) {
+  #timeline ul li {
+    margin: 0 80px;
+  }
+
+  #timeline ul li div {
+    width: calc(100vw - 200px);
+  }
+
+  #timeline ul li:nth-child(even) div {
+    left: 40px;
+  }
+
+  #timeline ul li:nth-child(even) div:after {
+    /* border-color: red green blue yellow;  */
+    left: -32px;
+    border-color: transparent var(--secondary-color) transparent transparent;
+  }
+}
+
+
+
+
+
+
+/* Javascript code to find
+   if each item is in the Viewport */
+/* Adding styles to the items */
+/* so that */
+/* Items only appear when the 'show' class is added to them */
+
+#timeline ul li.show div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+#timeline ul li.show:after {
+  background: var(--secondary-color)
+}
